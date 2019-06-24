@@ -14,7 +14,9 @@ namespace SigPort
        
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            ProfessorDAO pfdao = new ProfessorDAO();
+            gvAlunosMateria.DataSource = pfdao.carregarDadosAap(Convert.ToInt32(Session["idprojeto"]));
+            gvAlunosMateria.DataBind();
         }
 
         private void carregaAapAluno()

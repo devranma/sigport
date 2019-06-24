@@ -229,28 +229,24 @@ namespace SigPort.Modelo
             return codigo_usuario;
         }
 
-        public DataTable carregarDadosAap(int projetoId) {
+        public DataSet carregarDadosAap(int projetoId) {
             DataSet ds = new DataSet();
-            DataTable dt = new DataTable();
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter();
 
             try {
-                ds.Tables.Add(dt);
                 con = conex.abrirConexao();
                 cmd.Connection = con;
                 cmd.CommandText = "select idaap , nomeaap from arquivoentradaaap where fk_idprojeto = @idprojeto";
                 cmd.Parameters.AddWithValue("@idprojeto", projetoId);
-                NpgsqlDataAdapter nda = new NpgsqlDataAdapter(cmd.CommandText, cmd.Connection);
-
-                nda.Fill(ds, "aap");
-
-                dt = ds.Tables[0];
+                da.SelectCommand = cmd;
+                da.Fill(ds);    
             }
             catch (Exception) {
                 
             }
             con.Close();
             cmd.Dispose();
-            return dt;
+            return ds;
         }
     }
 }

@@ -23,7 +23,7 @@
                 <asp:GridView ID="gvAlunosMateria" runat="server" AutoGenerateColumns="False">
                 <Columns>
                     <asp:BoundField DataField="nomeaap" HeaderText="Nome AAP" />
-                    <asp:ButtonField ButtonType="Button" HeaderText="Carregar Dados" Text="Carregar" />
+                    <asp:ButtonField ButtonType="Button" HeaderText="Carregar Dados" Text="Carregar" CommandName="btnCarregar" />
                     <asp:BoundField DataField="idaap" Visible="False" />
                 </Columns>
             </asp:GridView>
@@ -55,7 +55,7 @@
         </center>
     </div>
     <div class="clearfix"></div>
-     <% Response.WriteFile("rodape.htm"); %>
+     <% //Response.WriteFile("rodape.htm"); %>
 	<script src="dist/wow.js"></script>		
 	<script>
 	    wow = new WOW(

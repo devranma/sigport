@@ -15,18 +15,15 @@ namespace SigPort.Modelo
         private bool status = false;
         private string caminho = "";
         private int id_projeto = 0;
-        public bool VerificaAlunosAAP(string[] ras, string[] alunos, string nome_arquivo, string nomemateria)
+        public bool VerificaAlunosAAP(string[] ras, string[] alunos, string arquivo, string nomemateria)
         {
             string formato_invalido = "";
             string[] listaras;
             string[] listanomes;
-            if(nome_arquivo.Contains(".xls"))
+            caminho = "C:\\Users\\matgu\\OneDrive\\Documents\\AAPs\\Listas Alunos\\" + nomemateria + "\\Alunos\\" + arquivo;
+            if (!caminho.Contains(".xls"))
             {
-                caminho = "C:\\Users\\matgu\\OneDrive\\Documents\\AAPs\\Listas Alunos\\" + nomemateria + nome_arquivo;
-            }
-            else
-            {
-                caminho = "C:\\Users\\matgu\\OneDrive\\Documents\\AAPs\\Listas Alunos\\" + nome_arquivo + ".xls";
+                caminho = caminho + ".xls";    
             }
             
             DataTable planilhas;
@@ -128,7 +125,7 @@ namespace SigPort.Modelo
             return ra;
         }
 
-        public bool InserirAAP(string[] ra, string[]nome, string nome_projeto,ref string mensagem, int codigo_aluno)
+        public bool InserirAAP(string[] ra, string[]nome, string nome_projeto,ref string mensagem, int codigo_aluno, ref int codigo_grupo)
         {
             status = false;
             string[] ra_aux = new string[ra.Length];
@@ -197,9 +194,23 @@ namespace SigPort.Modelo
                     {
                         cd_grupo = Convert.ToInt32(dr["idgrupo"]);
                     }
+
+                    codigo_grupo = cd_grupo;
+
                     dr.Close();
                     cmd.Parameters.Clear();
-                    
+
+                    string nome_aap = nome_projeto + "_" + cd_grupo;
+                    string diretorio_aap = "C:\\Users\\matgu\\OneDrive\\Documents\\AAPs\\Listas Alunos\\" + nome_projeto + "\\Arquivos_AAPs\\" + nome_aap + ".xls";
+                    cmd.CommandText = "update arquivoentradaaap set nomeaap=@nome, diretorioaap=@diretorioaap where idaap=@idaap";
+                    cmd.Parameters.AddWithValue("@nome", nome_aap);
+                    cmd.Parameters.AddWithValue("@diretorioaap", diretorio_aap);
+                    cmd.Parameters.AddWithValue("@idaap", cd_aap);
+                    cmd.ExecuteNonQuery();
+
+                    cmd.Parameters.Clear();
+
+
                     int[] codigos = new int[ra.Length]; //vetor que armazena os códigos de cada aluno
 
                     for (int i = 0; i < ra.Length; i++)
@@ -255,6 +266,51 @@ namespace SigPort.Modelo
             }
             return status;
         }
+
+        public bool inserirPortfolio(string nome_materia, int codigo_aluno, int codigo_projeto)
+        {
+            DateTime dt = new DateTime();
+            dt = DateTime.Now;
+
+            string datacriacao = dt.Year + "-" + dt.Month + "-" + dt.Day;
+            try
+            {
+                con = conex.abrirConexao();
+                cmd.Connection = con;
+
+                cmd.CommandText = "insert into arquivoentradarelatorio (nomerelatorio, notarelatorio, datacriacaorelatorio,fk_idaluno, portfolio_id) values (@nomerelatorio, @notarelatorio, @datacriacaorelatorio,@fk_idaluno,@portfolio_id)";
+                cmd.Parameters.AddWithValue("@nomerelatorio", nome_materia);
+                cmd.Parameters.AddWithValue("@notarelatorio", 0);
+                cmd.Parameters.AddWithValue("@datacriacaorelatorio", datacriacao);
+                cmd.Parameters.AddWithValue("@fk_idaluno", codigo_aluno);
+                cmd.Parameters.AddWithValue("@portfolio_id", codigo_projeto);
+                cmd.ExecuteNonQuery();
+
+                cmd.Parameters.Clear();
+
+                int codigo_relatorio = 0;
+
+                cmd.CommandText = "select arquivoentradarelatorio.idrelatorio where fk_idaluno=@fk_idaluno and portfolio_id=@portfolio_id;";
+                cmd.Parameters.AddWithValue("@fk_idaluno", codigo_aluno);
+                cmd.Parameters.AddWithValue("@portfolio_id", codigo_projeto);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    codigo_relatorio = Convert.ToInt32(dr["idrelatorio"]);
+                }
+                dr.Close();
+
+                cmd.Parameters.Clear();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return status;
+        }
+
 
         /// <summary>
         /// 
@@ -512,11 +568,7 @@ namespace SigPort.Modelo
 
             return id_projeto;
         }
-
-
-
-
-
+        
         public string[] carregaAAps(string nome_usuario, ref int semestre)
         {
             string[] aapsConcluidas = new string[1];

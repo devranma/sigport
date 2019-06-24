@@ -68,36 +68,51 @@ namespace SigPort.Modelo
                 else
                 {
                     con.Open();
-                    cmd.CommandText = "insert into usuarios (nomeusuario, senha,fk_idtipo) values (@nome,@senha,@fkidtipo)";
-                    cmd.Parameters.AddWithValue("@nome", nome_usuario);
-                    cmd.Parameters.AddWithValue("@senha", senha);
-                    cmd.Parameters.AddWithValue("@fkidtipo", 2);
-                    cd_user = Convert.ToInt32(cmd.ExecuteScalar());
-                    cmd.Parameters.Clear();
-
-                    con.Close();
-
-                    id_projeto = pegaCodigoProjeto(professor.disciplina);
-
-                    cd_usuario = pegaCodigoUsuarioProfessor(nm_user, senha_user);
-
-                    con.Open();
-                    if (id_projeto != 0)
+                    cmd.CommandText = "select count(*) from professores join projetos on projetos.idprojeto = professores.projeto_id where projetos.idprojeto = @idprojeto;";
+                    cmd.Parameters.AddWithValue("@idprojeto", id_projeto);
+                    NpgsqlDataReader dr = cmd.ExecuteReader();
+                    if (dr.Read())
                     {
-                        cmd.CommandText = "insert into professores (nomerepresentante,projeto_id,fk_idusuario) values (@nomerepresentante,@projeto_id,@fk_idusuario)";
-                        cmd.Parameters.AddWithValue("@nomerepresentante", professor.nomeProfessor);
-                        cmd.Parameters.AddWithValue("@projeto_id", id_projeto);
-                        cmd.Parameters.AddWithValue("@fk_idusuario", cd_usuario);
-                        cmd.ExecuteNonQuery();
-                        mensagem = "Cadastro efetuado com sucesso!";
-                        cd_user = cd_usuario;
+                        mensagem = "Já existe um professor registrado nessa disciplina";
+                        dr.Close();
                     }
                     else
                     {
-                        mensagem = "erro ao cadastrar. Projeto não encontrado!";
+                        cmd.Parameters.Clear();
+
+                        cmd.CommandText = "insert into usuarios (nomeusuario, senha,fk_idtipo) values (@nome,@senha,@fkidtipo)";
+                        cmd.Parameters.AddWithValue("@nome", nome_usuario);
+                        cmd.Parameters.AddWithValue("@senha", senha);
+                        cmd.Parameters.AddWithValue("@fkidtipo", 2);
+                        cd_user = Convert.ToInt32(cmd.ExecuteScalar());
+                        cmd.Parameters.Clear();
+
+                        con.Close();
+
+                        id_projeto = pegaCodigoProjeto(professor.disciplina);
+
+                        cd_usuario = pegaCodigoUsuarioProfessor(nm_user, senha_user);
+
+                        con.Open();
+                        if (id_projeto != 0)
+                        {
+                            cmd.CommandText = "insert into professores (nomerepresentante,projeto_id,fk_idusuario) values (@nomerepresentante,@projeto_id,@fk_idusuario)";
+                            cmd.Parameters.AddWithValue("@nomerepresentante", professor.nomeProfessor);
+                            cmd.Parameters.AddWithValue("@projeto_id", id_projeto);
+                            cmd.Parameters.AddWithValue("@fk_idusuario", cd_usuario);
+                            cmd.ExecuteNonQuery();
+                            mensagem = "Cadastro efetuado com sucesso!";
+                            cd_user = cd_usuario;
+                        }
+                        else
+                        {
+                            mensagem = "erro ao cadastrar. Projeto não encontrado!";
+                        }
+                        con.Close();
+                        cmd.Dispose();
                     }
-                    con.Close();
-                    cmd.Dispose();
+                    
+                    
                 }
 
                 

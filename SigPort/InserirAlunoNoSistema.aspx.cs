@@ -23,11 +23,11 @@ namespace SigPort
             dt = DateTime.Now;
             if (Convert.ToInt32(Session["cd_tipousuario"]) == 2)
             {
-                lblFormatoArquivo.Text = "alunos_nomedisciplina_anomes. \n Exemplo: alunos_Modelagem de Processos_201902";
+                lblFormatoArquivo.Text = "alunos_nomedisciplina_ano_semestre. \n Exemplo: alunos_Modelagem de Processos_20190_2";
             }
             else if (Convert.ToInt32(Session["cd_tipousuario"]) == 3)
             {
-                lblFormatoArquivo.Text = "alunos_matricula_anomes. \n Exemplo: alunos_matricula_201902";
+                lblFormatoArquivo.Text = "alunos_matricula_ano_semestre. \n Exemplo: alunos_matricula_2019_2";
             }
         }
 
@@ -39,7 +39,15 @@ namespace SigPort
                 nome_arquivo = fuListaAlunos.PostedFile.FileName;
                 if (Convert.ToInt32(Session["cd_tipousuario"]) == 2)
                 {
-                    arquivo_prof = "alunos_" + Session["nomemateria"].ToString() + "_" + dt.Year.ToString() + dt.Month.ToString() + ".xls";
+                    if (dt.Month <= 6)
+                    {
+                        arquivo_prof = "alunos_" + Session["nomemateria"].ToString() + "_" + dt.Year.ToString() + "_1.xls";
+                    }
+                    else
+                    {
+                        arquivo_prof = "alunos_" + Session["nomemateria"].ToString() + "_" + dt.Year.ToString() + "_2.xls";
+                    }
+                    
                     if (nome_arquivo.Equals(arquivo_prof))
                     {
                         caminho = "C:\\Users\\matgu\\OneDrive\\Documents\\AAPs\\Listas Alunos\\" + Session["nomemateria"].ToString() + "\\" + nome_arquivo;
@@ -55,7 +63,14 @@ namespace SigPort
                 }
                 else if (Convert.ToInt32(Session["cd_tipousuario"]) == 3)
                 {
-                    arquivo_adm = "alunos_matricula" + dt.Year.ToString() + dt.Month.ToString() + ".xls";
+                    if (dt.Month <= 6)
+                    {
+                        arquivo_adm = "alunos_matricula" + dt.Year.ToString() + "_1.xls";
+                    }
+                    else
+                    {
+                        arquivo_adm = "alunos_matricula" + dt.Year.ToString() + "_2.xls";
+                    }
                     if (nome_arquivo.Equals(arquivo_adm))
                     {
                         caminho = "C:\\Users\\matgu\\OneDrive\\Documents\\AAPs\\Arquivos Alunos\\" + nome_arquivo;

@@ -267,23 +267,40 @@ namespace SigPort.Modelo
             return status;
         }
 
-        public bool inserirPortfolio(string nome_materia, int codigo_aluno, int codigo_projeto)
+        public bool inserirPortfolio(string[] aaps, string nome_materia, int codigo_aluno, int codigo_projeto, string caminho)
         {
             DateTime dt = new DateTime();
             dt = DateTime.Now;
+
+            int[] aaps_aux = new int[aaps.Length];
 
             string datacriacao = dt.Year + "-" + dt.Month + "-" + dt.Day;
             try
             {
                 con = conex.abrirConexao();
                 cmd.Connection = con;
+                NpgsqlDataReader dr;
+                for (int i = 0; i < aaps_aux.Length; i++)
+                {
+                    cmd.CommandText = "select projeto_id from pesquisas join projetos on projetos.idprojeto = pesquisas.projeto_id where projetos.nomemateria=@nomemateria and pesquisas.aluno_id = @aluno_id";
+                    cmd.Parameters.AddWithValue("@nomemateria", aaps[i]);
+                    cmd.Parameters.AddWithValue("@aluno_id", codigo_aluno);
+                    dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        aaps_aux[i] = Convert.ToInt32(dr["projeto_id"]);
+                    }
+                    dr.Close();
+                    cmd.Parameters.Clear();
+                }
 
-                cmd.CommandText = "insert into arquivoentradarelatorio (nomerelatorio, notarelatorio, datacriacaorelatorio,fk_idaluno, portfolio_id) values (@nomerelatorio, @notarelatorio, @datacriacaorelatorio,@fk_idaluno,@portfolio_id)";
+                cmd.CommandText = "insert into arquivoentradarelatorio (nomerelatorio, notarelatorio, datacriacaorelatorio,fk_idaluno, portfolio_id, caminho_relatorio) values (@nomerelatorio, @notarelatorio, @datacriacaorelatorio,@fk_idaluno,@portfolio_id, @caminho_relatorio)";
                 cmd.Parameters.AddWithValue("@nomerelatorio", nome_materia);
                 cmd.Parameters.AddWithValue("@notarelatorio", 0);
                 cmd.Parameters.AddWithValue("@datacriacaorelatorio", datacriacao);
                 cmd.Parameters.AddWithValue("@fk_idaluno", codigo_aluno);
                 cmd.Parameters.AddWithValue("@portfolio_id", codigo_projeto);
+                cmd.Parameters.AddWithValue("@caminho_relatorio", caminho);
                 cmd.ExecuteNonQuery();
 
                 cmd.Parameters.Clear();
@@ -293,7 +310,7 @@ namespace SigPort.Modelo
                 cmd.CommandText = "select arquivoentradarelatorio.idrelatorio where fk_idaluno=@fk_idaluno and portfolio_id=@portfolio_id;";
                 cmd.Parameters.AddWithValue("@fk_idaluno", codigo_aluno);
                 cmd.Parameters.AddWithValue("@portfolio_id", codigo_projeto);
-                NpgsqlDataReader dr = cmd.ExecuteReader();
+                dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
                     codigo_relatorio = Convert.ToInt32(dr["idrelatorio"]);
@@ -301,11 +318,22 @@ namespace SigPort.Modelo
                 dr.Close();
 
                 cmd.Parameters.Clear();
+
+                for (int i = 0; i < aaps_aux.Length; i++)
+                {
+                    cmd.CommandText = "update pesquisas set relatorio_id = @relatorio_id where aluno_id=@aluno_id and projeto_id=@projeto_id;";
+                    cmd.Parameters.AddWithValue("@relatorio_id", codigo_relatorio);
+                    cmd.Parameters.AddWithValue("@aluno_id", codigo_aluno);
+                    cmd.Parameters.AddWithValue("@projeto_id", aaps_aux[i]);
+                    cmd.Parameters.Clear();
+                }
+                con.Close();
+                cmd.Dispose();
+                status = true;
             }
             catch (Exception)
             {
-
-                throw;
+                status = false;
             }
 
             return status;

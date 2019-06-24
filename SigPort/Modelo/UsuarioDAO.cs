@@ -81,6 +81,39 @@ namespace SigPort.Modelo
             return status_autenticacao;
         }
 
+        public bool autenticarAdministrador(string nome_usuario, string senha)
+        {
+            try
+            {
+                con = conex.abrirConexao();
+                cmd.Connection = con;
+
+                cmd.CommandText = "select * from usuarios where nomeusuario=@nome_usuario and senha=@senha";
+                cmd.Parameters.AddWithValue("@nome_usuario", nome_usuario);
+                cmd.Parameters.AddWithValue("@senha", senha);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    status = true;
+                }
+                else
+                {
+                    status = false;
+                }
+                dr.Close();
+                con.Close();
+                cmd.Dispose();
+            }
+            catch (Exception)
+            {
+                status = false;
+            }
+            return status;
+        }
+
+
+
+
         public bool AutenticarProfessor(string usuario, string senha, ref int cd_user)
         {
             con = conex.abrirConexao();

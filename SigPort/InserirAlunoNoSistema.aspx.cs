@@ -65,12 +65,13 @@ namespace SigPort
                 {
                     if (dt.Month <= 6)
                     {
-                        arquivo_adm = "alunos_matricula" + dt.Year.ToString() + "_1.xls";
+                        arquivo_adm = "alunos_matricula_" + dt.Year.ToString() + "_1.xls";
                     }
                     else
                     {
-                        arquivo_adm = "alunos_matricula" + dt.Year.ToString() + "_2.xls";
+                        arquivo_adm = "alunos_matricula_" + dt.Year.ToString() + "_2.xls";
                     }
+                    Session["arquivo_adm"] = arquivo_adm;
                     if (nome_arquivo.Equals(arquivo_adm))
                     {
                         caminho = "C:\\Users\\matgu\\OneDrive\\Documents\\AAPs\\Arquivos Alunos\\" + nome_arquivo;
@@ -110,7 +111,7 @@ namespace SigPort
                         ra[i] = gvAlunosInserir.Rows[i].Cells[0].Text;
                         nomes[i] = gvAlunosInserir.Rows[i].Cells[1].Text;
                     }
-                    if (Session["nome_arquivo"].Equals("planilha_alunos"))
+                    if (Session["nome_arquivo"].Equals(Session["arquivo_adm"]))
                     {
                         if (adm.InserirAlunos(ra, nomes, ref registros) && registros.Equals(String.Empty))
                         {

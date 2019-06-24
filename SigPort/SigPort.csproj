@@ -82,6 +82,7 @@
     <Content Include="envioDeNotaseRelatorios.aspx" />
     <Content Include="InserirAluno.aspx" />
     <Content Include="InserirAlunoNoSistema.aspx" />
+    <Content Include="loginAdministrador.aspx" />
     <Content Include="loginProfessor.aspx" />
     <Content Include="login.aspx" />
     <Content Include="PainelAdm.aspx" />
@@ -209,6 +210,13 @@
     </Compile>
     <Compile Include="InserirAlunoNoSistema.aspx.designer.cs">
       <DependentUpon>InserirAlunoNoSistema.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="loginAdministrador.aspx.cs">
+      <DependentUpon>loginAdministrador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="loginAdministrador.aspx.designer.cs">
+      <DependentUpon>loginAdministrador.aspx</DependentUpon>
     </Compile>
     <Compile Include="loginProfessor.aspx.cs">
       <DependentUpon>loginProfessor.aspx</DependentUpon>

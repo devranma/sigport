@@ -49,6 +49,7 @@ namespace SigPort.Modelo
         public bool InserirAlunos(string[] ra, string[] nomes, ref string registros_identicos)
         {
             bool status = false;
+            int qtde_registros_identicos = 0;
             string[] ra_alunos = new string[ra.Length];
             string[] nome_alunos = new string[nomes.Length];
             string[] ra_aux = new string[ra_alunos.Length];
@@ -85,6 +86,7 @@ namespace SigPort.Modelo
                     {
                         ra_aux[i] = "";
                         nome_aux[i] = "";
+                        qtde_registros_identicos++;
                     }
                     ra_al = "";
                     nome = "";
@@ -92,7 +94,7 @@ namespace SigPort.Modelo
                     dr.Close();
                 }
                 con.Close();
-                if (ra_aux.Length != 0)
+                if (qtde_registros_identicos != ra_aux.Length)
                 {
                     con.Open();
                     for (int i = 0; i < ra_aux.Length; i++)

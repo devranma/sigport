@@ -11,7 +11,7 @@ namespace SigPort
 {
     public partial class CadastrarPortfolio : System.Web.UI.Page
     {
-        private int semestre = 0;
+        private int semestre = 0, qtde_aaps = 0;
         private string[] aapsConcluidas;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,26 +40,32 @@ namespace SigPort
                 {
                     case "Modelagem de Processos":
                         cbModelagemDeProcessos.Enabled = true;
+                        qtde_aaps++;
                         break;
 
                     case "Engenharia de Software e Aplicações":
                         cbEngenhariaDeSoftware.Enabled = true;
+                        qtde_aaps++;
                         break;
 
                     case "Banco de Dados e Aplicações":
                         cbBancoDeDados.Enabled = true;
+                        qtde_aaps++;
                         break;
 
                     case "Programação para Internet":
                         cbProgramacaoInternet.Enabled = true;
+                        qtde_aaps++;
                         break;
 
                     case "Sistemas Integrados de Gestão e Aplicações":
                         cbSistemasIntegrados.Enabled = true;
+                        qtde_aaps++;
                         break;
 
                     case "Projetos de Tecnologia da Informação II":
                         cbProjetosTi2.Enabled = true;
+                        qtde_aaps++;
                         break;
                     default:
                         break;
@@ -68,49 +74,6 @@ namespace SigPort
         }
         protected void btnCadastrarPortfolio1_Click(object sender, EventArgs e)
         {
-            NpgsqlConnection conn = new NpgsqlConnection();
-            NpgsqlCommand cmd = new NpgsqlCommand();
-            conn.ConnectionString = "Server = 127.0.0.1; Port = 5432; Database = sigportdb; User id = root; password = root";
-            cmd.Connection = conn;
-            cmd.CommandText = "select aluno_id from Pesquisas where aluno_id = 'valor1'";
-            cmd.CommandType = CommandType.Text;
-            conn.Open();
-
-            NpgsqlDataReader dr = cmd.ExecuteReader();
-
-            if (dr.HasRows)
-            {
-                //lblRespBanco.Text = "Aluno já cadastrado nessa AAP";
-
-            }
-            else
-            {
-                string respostaFinal = "";
-                conn.Close();
-                cmd.CommandText = "insert into Pesquisas (aluno_id, aap_id, relatorio_id, materia_id, situacao) values('valor1', 'valor2', 'valor3', 'valor4', 'valor5')";
-                cmd.CommandType = CommandType.Text;
-                conn.Open();
-                cmd.ExecuteScalar();
-                respostaFinal += "A AAP de valor1 foi inserida, ";
-                conn.Close();
-                cmd.CommandText = "insert into Pesquisas (aluno_id, aap_id, relatorio_id, materia_id, situacao) values('valor1', 'valor2', 'valor3', 'valor4', 'valor5')";
-                cmd.CommandType = CommandType.Text;
-                conn.Open();
-                cmd.ExecuteScalar();
-                respostaFinal += "A AAP de valor2 foi inserida, ";
-                conn.Close();
-                cmd.CommandText = "insert into Pesquisas (aluno_id, aap_id, relatorio_id, materia_id, situacao) values('valor1', 'valor2', 'valor3', 'valor4', 'valor5')";
-                cmd.CommandType = CommandType.Text;
-                conn.Open();
-                cmd.ExecuteScalar();
-                respostaFinal += "A AAP de valor3 foi inserida.-";
-                //lblRespBanco.Text = "Registro incluído com sucesso!";
-
-            }
-
-            conn.Close();
-            conn.Dispose();
-
             
         }
     }

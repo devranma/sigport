@@ -1,0 +1,71 @@
+*{margin:0;padding:0;}
+.clearfix{clear: both;}
+@font-face{font-family: 'Neou-Thin';src: url('font/Neou-Thin.otf');src: local('Neou-Thin'), url('font/Neou-Thin.otf') format('truetype');}
+/*######################################## PÁGINAS ##############################################*/
+.linhaDivisoria{width: 95%;height: 3px;background-color: #222446;color: #222446;}
+.containerPaginaLogin{position: absolute;margin-top: 0%;width: 100%;height: auto;min-height: 640px;background-image: url('../img/ilustracao-fundo-tela-login.jpg');background-size: 100%;background-position: left;background-repeat: repeat-y;}
+.blocosLargura50{width: 48%; float: left;margin-left: 2%;}
+.boasVindasTelaLogin{position: relative;margin-top: 14%;margin-left: 8%;color: #ffffff;font-family: 'Neou-Thin';font-size: 17px;line-height: 30px; text-align: left;background-color: #45486c; opacity: 0.7;width: 90%;min-height: 60px;padding: 10px;border-radius: 8px;}
+.tituloPaginaLogin{font-weight: bold;color: #ffffff;font-family: 'Neou-Thin';font-size: 24px; text-align: center;padding-bottom: 2%;line-height: 33px; margin-top: 20%; text-shadow: #000 3px 4px 3px;}
+.blocoLogin{border-radius: 8px;width: 80%;margin-top: 1%;height: auto;min-height: 200px;padding: 10px;background-color: #ffffff;}
+.inputLogin{width: 95%;border-top: none;border-left: none;border-right: none;border-bottom: 1px #222446 solid;height: 40px;}
+#btnSubmitLogin{width: 50%;margin-top: 5%;color: #ffffff;font-family: 'Neou-Thin';font-weight: bold;font-size: 19px;height: 50px;cursor: pointer;background-image: linear-gradient(#4d5276, #222446);}
+#btnSubmitLogin:hover{transition: 180ms linear;transform: scale(0.9);background-image: linear-gradient(#222446, #4d5276);}
+.opcaoRecuperarSenhaLogin{font-weight: bold;cursor: pointer;text-align: right;margin-top: 3%;font-family: 'Neou-Thin';color: #2e3163;font-size: 16px;}
+.opcaoRecuperarSenhaLogin:hover{transition: 180ms linear;color: #ff0000;}
+#imgLogotiposLogin{width: 12%;float: left;margin-left: 3%;margin-top: 1%; cursor: pointer;}
+#imgLogotiposLogin:hover{transition: 180ms linear;transform: scale(0.9);}
+.blocoFormularioRevisaoNotas{width: 70%;height: auto;min-height: 300px;padding: 10px;background-color: #ffffff;border-radius: 8px; box-shadow: 2px 2px 29px 5px #222446;}
+#btnRevisaoNotas{float:none; margin-right: 2%;width: 33%;color: #ffffff;font-family: 'Neou-Thin';font-weight: bold;font-size: 19px;height: 50px;cursor: pointer;background-image: linear-gradient(#4d5276, #222446);}
+#btnRevisaoNotas:hover{transition: 180ms linear;transform: scale(0.9);background-image: linear-gradient(#222446, #4d5276);}
+.btnRevisaoNotas{float:none; margin-right: 2%;width: 28%;color: #ffffff;font-family: 'Neou-Thin';font-weight: bold;font-size: 19px;height: 50px;cursor: pointer;background-image: linear-gradient(#4d5276, #222446);}
+.btnRevisaoNotas:hover{transition: 180ms linear;transform: scale(0.9);background-image: linear-gradient(#222446, #4d5276);}
+.dropRevisaoNotas{font-weight: bold;width: 50%;float: left; margin-left: 2%;height: 50px;font-family: 'Neou-Thin';font-size: 16px; color: #4d5276;}
+.txtRevisaoNotas{width: 80%;margin-top: 3%;height: 130px;color: #222446;margin-top: 2%; padding-bottom: 2%;}
+.txtInputs{width: 47%;float: right; margin-right: 2%; height: 50px;}
+.slcForms{width: 80%;height: 30px;font-family: 'Neou-Thin';font-size: 16px; margin-top: 5%;}
+.descricaoForms{text-shadow: #000 1px 1px 1px;font-size: 17px; float: right; margin-right: 2%;font-family: 'Neou-Thin';color: #222446;font-weight: bold;margin-top: 2%}
+::-webkit-input-placeholder  { color:#222446; text-align: center; }
+.tituloTabelaInformacoes{width: 23%;text-align: center;font-size: 18px;font-family: 'Neou-Thin';color: #222446;padding: 8px;font-weight: bold;background-color: #d4d4d4;text-shadow: #000 1px 1px 1px;}
+.tabelaInformacoes{width: 23%;text-align: center;font-size: 18px;font-family: 'Neou-Thin';color: #222446;padding: 8px;font-weight: bold;}
+.ilustracaoTabelasInformacoes{max-width: 20px;float: left;cursor: pointer;}
+.containerPaginaInternas{width: 100%;height: auto;min-height: 600px;padding-bottom: 3%;background-image: linear-gradient(#bbbbbb,#d1d0d2,#d1d0d2,#ffffff);}
+.fundoPaginas{background-image: linear-gradient(#bbbbbb,#d1d0d2,#d1d0d2,#ffffff);}
+.containerAapAlunoeRelatorio{margin-top: 3%;width: 44%; min-width: 300px;background-color: #ffffff;min-height: 400px;height: auto;border: 4px #a8a8a8 solid; float: left; margin-left: 4%;}
+.txtLadoaLado{width: 44%;float: left;margin-left: 3%;height: 20px;color: #222446; margin-top: 3%;}
+.lblCadastrarPortFolio{font-family: 'Neou-Thin';font-size: 16px;color: #222446;font-weight: bold;line-height: 40px;text-shadow: #000 1px 1px 1px;}
+#botoesPainelAluno{width: 20%;float: left;margin-left: 4%;cursor: pointer;margin-top: 6%;}
+#botoesPainelAluno:hover{transition: 180ms linear;transform: scale(1.1);}
+#botoesPainelProfessor{width: 25%;float: none;margin-left: 2%;cursor: pointer;margin-top: 6%;}
+#botoesPainelProfessor:hover{transition: 180ms linear;transform: scale(1.1);}
+@media(max-width: 1100px){
+	#botoesPainelAluno{width: 60%;float: none;margin-left: 0%;cursor: pointer;margin-top: 3%;}
+	#botoesPainelProfessor{width: 60%;float: none;margin-left: 0%;cursor: pointer;margin-top: 3%;}
+	.dropRevisaoNotas{width: 50%;float: none; margin-left: 0%;height: 50px;font-family: 'Neou-Thin';font-size: 13px; color: #4d5276; margin-top: 3%;}
+	.lblCadastrarPortFolio{font-family: 'Neou-Thin';font-size: 12px;color: #222446;font-weight: bold;line-height: 40px;text-shadow: #000 1px 1px 1px;}
+	.containerAapAlunoeRelatorio{margin-top: 5%;width: 80%; min-width: 300px;background-color: #ffffff;min-height: 400px;height: auto;border: 2px #a8a8a8 solid; float: none; margin-left: 0%;}
+	.tituloTabelaInformacoes{width: 16%;text-align: center;font-size: 13px;font-family: 'Neou-Thin';color: #222446;padding: 8px;font-weight: bold;background-color: #d4d4d4;text-shadow: #000 1px 1px 1px;}
+	.tabelaInformacoes{width: 16%;text-align: center;font-size: 13px;font-family: 'Neou-Thin';color: #222446;padding: 8px;font-weight: bold;}
+	.ilustracaoTabelasInformacoes{max-width: 15px;float: none;padding-bottom: 2%;cursor: pointer;padding-right: 3%;}
+	.txtRevisaoNotas{width: 80%;margin-top: 3%;height: 130px;}
+	.txtInputs{width: 80%;float: none; margin-right: 0%; height: 50px; margin-top: 3%;}
+	#btnRevisaoNotas{margin-top: 6%;float:none; margin-left:0%;width: 60%;color: #ffffff;font-family: 'Neou-Thin';font-weight: bold;font-size: 14px;height: 50px;cursor: pointer;background-image: linear-gradient(#4d5276, #222446);}
+	.blocosLargura50{width: 98%; float: none;margin-left: 0%;}
+	.boasVindasTelaLogin{position: relative;margin-top: 6%;margin-left: 0%;color: #ffffff;font-family: 'Neou-Thin';font-size: 12px;line-height: 30px; text-align: left;background-color: #45486c; opacity: 0.7;width: 90%;min-height: 60px;padding: 10px;border-radius: 8px;}
+	.tituloPaginaLogin{color: #ffffff;font-family: 'Neou-Thin';font-size: 20px; text-align: center;padding-bottom: 2%;line-height: 33px; margin-top: 10%; text-shadow: #000 3px 4px 3px;}
+	#imgLogotiposLogin{width: 33%;float: left;margin-left: 11%;margin-top: 4%; cursor: pointer;padding-bottom: 2%;}
+}
+/*######################################## RODAPÉ E TOPO #################################################*/
+.posicaoRodape{margin-top: 46%;position: relative;z-index: 10;}
+.containerRodapeTopo{width: 100%;height: auto;min-height: 90px;background-color: #656783;}
+#logotiposRodape{width: 10%;float: left;margin-left: 3%;cursor: pointer;margin-top: 2%;padding-bottom: 2%;}
+#logotiposRodape:hover{transition: 180ms linear;transform: scale(0.9);}
+.textoRodape{text-align: center;font-size: 18px;font-family: 'Neou-Thin';font-weight: bold;color: #ffffff;padding-top: 4%;padding-bottom: 2%;}
+.nomeLogotipoTopo{text-align: center;font-size: 21px;font-family: 'Neou-Thin';font-weight: bold;color: #ffffff;padding-bottom: 1.5%; padding-top: 1.5%;}
+.nomeUsuarioTopo{text-align: right;font-size: 18px;font-family: 'Neou-Thin';font-weight: bold;color: #ffffff;padding-bottom: 1.5%; padding-top: 1.5%; margin-right: 2%; float: right;}
+@media(max-width: 1100px){
+	.nomeLogotipoTopo{text-align: center;font-size: 16px;font-family: 'Neou-Thin';font-weight: bold;color: #ffffff;padding-bottom: 1.5%; padding-top: 1.5%;}
+	.nomeUsuarioTopo{text-align: center;font-size: 13px;font-family: 'Neou-Thin';font-weight: bold;color: #ffffff;padding-bottom: 1.5%; padding-top: 1.5%; margin-right: 0%; float: none;}
+	#logotiposRodape{width: 15%;float: left;margin-left: 3%;cursor: pointer;margin-top: 2%;padding-bottom: 2%;}
+	.textoRodape{text-align: center;font-size: 13px;font-family: 'Neou-Thin';font-weight: bold;color: #ffffff;padding-top: 4%;padding-bottom: 2%;}
+}

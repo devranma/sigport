@@ -1,0 +1,149 @@
+*{
+
+	margin: 0;
+	padding: 0;
+
+}
+
+@font-face{font-family: 'Neou-Thin';src: url('font/Neou-Thin.otf');src: local('Neou-Thin'), url('font/Neou-Thin.otf') format('truetype');}
+
+.container-menu{
+
+	background-color: #626481;
+
+}
+
+#check{
+
+	display: none;
+
+}
+
+#icone{
+
+	cursor: pointer;
+	padding: 15px;
+	position: absolute;
+	z-index: 999999999999999;
+
+}
+
+.barra{
+
+	background-color: #626481;
+	height: 100%;
+	width: 300px;
+	position: absolute;
+	transition: all .2s linear;
+	left: -600px;
+	z-index: 999999999;
+
+}
+
+nav{
+
+	width: 100%;
+	position: absolute;
+	top: 60px;
+
+}
+
+nav a{
+
+	text-decoration: none;
+
+}
+
+.link{
+
+	background-color: #626481;
+	padding: 20px;
+	font-family: 'Neou-Thin';
+	font-size: 16px;
+	font-weight: bold;
+	transition: all .2s linear;
+	color: #ffffff;
+	opacity: 0;
+	margin-top: 200px;
+
+}
+
+.link:hover{
+
+	background-color: #ffffff;
+	font-weight: bold;
+	color: #ff0000;
+	transition: 180ms linear;
+
+}
+
+#check:checked ~ .barra{
+
+		transform: translateX(600px);
+
+}
+
+#check:checked ~ .barra nav a .link{
+
+	opacity: 1;
+	margin-top: 0;
+	transition-delay: .2s;
+
+}
+
+.barra ul ul{
+
+	position: relative;
+	display: none;
+
+}
+
+.barra ul li ul{
+
+	background-color: #ffffff;
+	padding: 20px;
+	font-family: 'Neou-Thin';
+	font-weight: bold;
+	font-size: 16px;
+	transition: all .2s linear;
+	color: #ffffff;
+	list-style: none;
+
+}
+
+.barra ul li ul:hover{
+
+	background-color: #ffffff;
+
+}
+
+.linkdrop{
+
+	padding: 5px;
+	font-family: 'Neou-Thin';
+	font-weight: bold;
+	font-size: 14px;
+	transition: all .2s linear;
+	color: #222446;
+	cursor: pointer;
+
+}
+
+.linkdrop:hover{
+
+	color: #ff0000;
+
+}
+
+.barra ul li:hover ul{
+
+	display: block;
+
+}
+
+.icone-menu{
+
+	width: 2%;
+	min-width: 30px;
+
+}

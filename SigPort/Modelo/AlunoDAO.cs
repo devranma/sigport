@@ -442,6 +442,37 @@ namespace SigPort.Modelo
             return status;
         }
 
+        public bool verificaAapEnviada(string nome_projeto)
+        {
+            int codigo_projeto = 0;
+            try
+            {
+                codigo_projeto = pegaCodigoProjeto(nome_projeto);
+
+                con = conex.abrirConexao();
+                cmd.Connection = con;
+
+                cmd.CommandText = "select * from arquivoentradaaap where fk_idprojeto=@fk_idprojeto";
+                cmd.Parameters.AddWithValue("@fk_idprojeto", codigo_projeto);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    status = true;
+                }
+                else
+                {
+                    status = false;
+                }
+                dr.Close();
+                con.Close();
+                cmd.Dispose();
+            }
+            catch (Exception)
+            {
+                status = false;
+            }
+            return status;
+        }
 
 
         public List<string> CarregaIntegrantesGrupo(int cd_aluno, ref bool status, string nome_aluno, ref string aap)
@@ -455,6 +486,7 @@ namespace SigPort.Modelo
             {
                 con = conex.abrirConexao();
                 cmd.Connection = con;
+                
                 cmd.CommandText = "select fk_idgrupo from integrantes where aluno_id=@cd_aluno";
                 cmd.Parameters.AddWithValue("@cd_aluno", codigo_aluno);
                 NpgsqlDataReader dr = cmd.ExecuteReader();

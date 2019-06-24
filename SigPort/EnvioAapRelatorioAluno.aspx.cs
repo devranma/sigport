@@ -48,39 +48,43 @@ namespace SigPort
                     if (!nome_aluno.Equals(String.Empty))
                     {
                         //nome_usuario = Session["nm_user"].ToString();
-                        integrantes = aldao.CarregaIntegrantesGrupo(codigo_aluno, ref status, nome_aluno, ref nome_aap);
-                        if (!nome_aap.Equals("") && status)
+                        if (aldao.verificaAapEnviada(selecionarAapeRelatorio.Text))
                         {
-                            selecionarAapeRelatorio.SelectedValue = nome_aap;
-                            int qtde_alunos = integrantes.Count;
-                            switch (qtde_alunos)
+                            integrantes = aldao.CarregaIntegrantesGrupo(codigo_aluno, ref status, nome_aluno, ref nome_aap);
+                            if (!nome_aap.Equals("") && status)
                             {
-                                case 1:
-                                    txtNomeIntegrante1.Text = integrantes[0];
-                                    break;
+                                selecionarAapeRelatorio.SelectedValue = nome_aap;
+                                int qtde_alunos = integrantes.Count;
+                                switch (qtde_alunos)
+                                {
+                                    case 1:
+                                        txtNomeIntegrante1.Text = integrantes[0];
+                                        break;
 
-                                case 2:
-                                    txtNomeIntegrante1.Text = integrantes[0];
-                                    txtNomeIntegrante2.Text = integrantes[1];
-                                    break;
+                                    case 2:
+                                        txtNomeIntegrante1.Text = integrantes[0];
+                                        txtNomeIntegrante2.Text = integrantes[1];
+                                        break;
 
-                                case 3:
-                                    txtNomeIntegrante1.Text = integrantes[0];
-                                    txtNomeIntegrante2.Text = integrantes[1];
-                                    txtNomeIntegrante3.Text = integrantes[2];
-                                    break;
+                                    case 3:
+                                        txtNomeIntegrante1.Text = integrantes[0];
+                                        txtNomeIntegrante2.Text = integrantes[1];
+                                        txtNomeIntegrante3.Text = integrantes[2];
+                                        break;
 
-                                case 4:
-                                    txtNomeIntegrante1.Text = integrantes[0];
-                                    txtNomeIntegrante2.Text = integrantes[1];
-                                    txtNomeIntegrante3.Text = integrantes[2];
-                                    txtNomeIntegrante4.Text = integrantes[3];
-                                    break;
-                                default:
-                                    break;
+                                    case 4:
+                                        txtNomeIntegrante1.Text = integrantes[0];
+                                        txtNomeIntegrante2.Text = integrantes[1];
+                                        txtNomeIntegrante3.Text = integrantes[2];
+                                        txtNomeIntegrante4.Text = integrantes[3];
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                aap_enviada = true;
                             }
-                            aap_enviada = true;
                         }
+                        
                     }
                 }
             }
@@ -120,7 +124,7 @@ namespace SigPort
 
             if (!fuArquivoAAP.PostedFile.FileName.Equals(String.Empty))
             {
-                if (fuArquivoAAP.PostedFile.FileName.EndsWith(".pdf"))
+                if (fuArquivoAAP.PostedFile.FileName.EndsWith(".pdf") || fuArquivoAAP.PostedFile.FileName.EndsWith(".PDF"))
                 {
                     if (txtNomeIntegrante1.Text.Where(c => char.IsLetter(c)).Count() > 0)
                     {

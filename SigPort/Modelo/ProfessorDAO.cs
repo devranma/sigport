@@ -228,5 +228,25 @@ namespace SigPort.Modelo
 
             return codigo_usuario;
         }
+
+        public DataSet carregarDadosAap(int projetoId) {
+            DataSet ds = new DataSet();
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter();
+
+            try {
+                con = conex.abrirConexao();
+                cmd.Connection = con;
+                cmd.CommandText = "select idaap , nomeaap from arquivoentradaaap where fk_idprojeto = @idprojeto";
+                cmd.Parameters.AddWithValue("@idprojeto", projetoId);
+                da.SelectCommand = cmd;
+                da.Fill(ds);    
+            }
+            catch (Exception) {
+                
+            }
+            con.Close();
+            cmd.Dispose();
+            return ds;
+        }
     }
 }

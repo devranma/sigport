@@ -17,16 +17,23 @@
      <% Response.WriteFile("topo.aspx"); %>
     <div class="containerPaginaInternas">
         <br /><br />
-        <center>
+        <center> 
+            <form id="form1" runat="server">
             <div class="containerAapAlunoeRelatorio" runat="server">
-                
+                <asp:GridView ID="gvAlunosMateria" runat="server" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:BoundField DataField="nomeaap" HeaderText="Nome AAP" />
+                    <asp:ButtonField ButtonType="Button" HeaderText="Carregar Dados" Text="Carregar" CommandName="btnCarregar" />
+                    <asp:BoundField DataField="idaap" Visible="False" />
+                </Columns>
+            </asp:GridView>
                 <asp:Label ID="lblMensagem" runat="server"></asp:Label>
                 <br />
             </div>
             <div class="containerAapAlunoeRelatorio">
                 <br />
                 <asp:Label ID="lblTituloSelecionaAap" runat="server" Text="Selecione a AAP:" class="tituloTabelaInformacoes"></asp:Label>
-                <form id="form1" runat="server">
+                
                     <div class="clearfix"></div><br /><br />
                     <asp:TextBox ID="txtIntegranteUm" runat="server" placeholder="Integrante 1" class="txtLadoaLado" required></asp:TextBox>
                     <asp:TextBox ID="txtNotaIntegranteUm" runat="server" placeholder="Nota do integrante" class="txtLadoaLado" required></asp:TextBox>
@@ -38,15 +45,17 @@
                     <asp:TextBox ID="txtNotaIntegranteQuatro" runat="server" placeholder="Nota do integrante" class="txtLadoaLado" required></asp:TextBox>
                     <br /><br />
                     <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" class="btnRevisaoNotas" OnClick="btnConfirmar_Click"/>
+                    <asp:Button ID="btnBaixarArquivo" runat="server" Text="Baixar Arquivo" class="btnRevisaoNotas"/>
                     <asp:Button ID="btnVoltar" runat="server" Text="Voltar" class="btnRevisaoNotas"/>
                     <br /><br />
-                </form>
+                
             </div>
             <div class="clearfix"></div>
+                </form>
         </center>
     </div>
     <div class="clearfix"></div>
-     <% Response.WriteFile("rodape.htm"); %>
+     <% //Response.WriteFile("rodape.htm"); %>
 	<script src="dist/wow.js"></script>		
 	<script>
 	    wow = new WOW(

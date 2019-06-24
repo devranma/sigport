@@ -38,6 +38,8 @@ namespace SigPort
 
                         string nome_materia = profdao.pegaNomeMateria(Convert.ToInt32(Session["cd_usuario"]));
                         Session["nomemateria"] = nome_materia;
+                        int cd_projeto = profdao.pegaCodigoProjeto(Session["nomemateria"].ToString());
+                        Session["idprojeto"] = cd_projeto;
                         Response.Redirect("PainelProfessor.aspx");
                     }
                     else

@@ -41,10 +41,10 @@
                         <asp:TextBox ID="txtNomeProfessor" runat="server" placeholder="Nome do professor:" required="required" class="inputLogin"></asp:TextBox>
                         <asp:DropDownList ID="disciplinas" runat="server" class="slcForms" Height="98px">
                                 <asp:ListItem Value="Modelagem de Processos" />
-                                <asp:ListItem Value="Engenharia de Software e Aplicações" />
-                            <asp:ListItem Value="Banco de Dados e Aplicações" />
+                                <asp:ListItem Value="Engenharia de Software" >Engenharia de Software</asp:ListItem>
+                            <asp:ListItem Value="Banco de Dados" >Banco de Dados</asp:ListItem>
                             <asp:ListItem Value="Programação para Internet" />
-                            <asp:ListItem Value="Sistemas Integrados de Gestão e Aplicações" />
+                            <asp:ListItem Value="Sistemas Integrados" >Sistemas Integrados</asp:ListItem>
                             <asp:ListItem Value="Projetos de Tecnologia da Informação II" />
                                 <asp:ListItem>TG1</asp:ListItem>
                                 <asp:ListItem>TG2</asp:ListItem>

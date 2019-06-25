@@ -50,7 +50,7 @@ namespace SigPort
                     
                     if (nome_arquivo.Equals(arquivo_prof))
                     {
-                        caminho = "C:\\Users\\matgu\\OneDrive\\Documents\\AAPs\\Listas Alunos\\" + Session["nomemateria"].ToString() + "\\" + nome_arquivo;
+                        caminho = "C:\\Users\\matgu\\OneDrive\\Documents\\AAPs\\Listas Alunos\\" + Session["nomemateria"].ToString() + "\\Alunos\\" + nome_arquivo;
                         fuListaAlunos.SaveAs(caminho);
                         Ler();
                         Session["nome_arquivo"] = nome_arquivo;

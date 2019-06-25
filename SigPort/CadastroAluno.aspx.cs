@@ -18,6 +18,7 @@ namespace SigPort
             {
                 consultaRaNomeAluno();
             }
+            
         }
 
         protected void btnSubmitLogin_Click(object sender, EventArgs e)

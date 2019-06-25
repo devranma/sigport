@@ -61,6 +61,7 @@ namespace SigPort.Modelo
             {
                 cd_usuario = pegaCodigoUsuarioProfessor(nm_user, senha_user);
 
+                id_projeto = pegaCodigoProjeto(professor.disciplina);
                 if (cd_usuario != 0)
                 {
                     mensagem = "Usuário já cadastrado!";
@@ -68,7 +69,7 @@ namespace SigPort.Modelo
                 else
                 {
                     con.Open();
-                    cmd.CommandText = "select count(*) from professores join projetos on projetos.idprojeto = professores.projeto_id where projetos.idprojeto = @idprojeto;";
+                    cmd.CommandText = "select idprofessor from professores join projetos on projetos.idprojeto = professores.projeto_id where projetos.idprojeto = @idprojeto;";
                     cmd.Parameters.AddWithValue("@idprojeto", id_projeto);
                     NpgsqlDataReader dr = cmd.ExecuteReader();
                     if (dr.Read())

@@ -26,6 +26,7 @@ namespace SigPort
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             dt = DateTime.Now;
             semestre = Convert.ToInt32(Session["semestre"]);
             carregaAApsValidas();
@@ -217,11 +218,11 @@ namespace SigPort
                             string arquivo = "";
                             if (dt.Month <= 6)
                             {
-                                nm_arquivo = "alunos_" + selecionarAapeRelatorio.Text + "_" + dt.Year + "_1.xls";
+                                nm_arquivo = "alunos_" + selecionarAapeRelatorio.SelectedItem.Value + "_" + dt.Year + "_1.xls";
                             }
                             else
                             {
-                                nm_arquivo = "alunos_" + selecionarAapeRelatorio.Text + "_" + dt.Year + "_2.xls";
+                                nm_arquivo = "alunos_" + selecionarAapeRelatorio.SelectedItem.Value + "_" + dt.Year + "_2.xls";
                             }
                             if (aldao.VerificaAlunosAAP(ras, nomes, nm_arquivo, selecionarAapeRelatorio.Text))
                             {

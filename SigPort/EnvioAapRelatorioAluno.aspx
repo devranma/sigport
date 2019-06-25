@@ -27,13 +27,13 @@
                     <p class="descricaoForms" style="float: none;">Selecione a AAP</p>
                         <asp:DropDownList ID="selecionarAapeRelatorio" runat="server" class="slcForms" OnSelectedIndexChanged="selecionarAapeRelatorio_SelectedIndexChanged">
                             <asp:ListItem Enabled="False">Modelagem de Processos</asp:ListItem>
-                            <asp:ListItem Enabled="False">Engenharia de Software e Aplicações</asp:ListItem>
-                            <asp:ListItem Enabled="False">Banco de Dados e Aplicações</asp:ListItem>
-                            <asp:ListItem Enabled="False">Programação para Internet</asp:ListItem>
-                            <asp:ListItem Enabled="False">Sistemas Integrados de Gestão e Aplicações</asp:ListItem>
-                            <asp:ListItem Enabled="False">Projetos de Tecnologia da Informação II</asp:ListItem>
-                            <asp:ListItem Enabled="False">Portfólio I - TG1</asp:ListItem>
-                            <asp:ListItem Enabled="False">Portfólio II - TG2</asp:ListItem>
+                            <asp:ListItem Enabled="False" Value="Engenharia de Software e Aplicacoes">Engenharia de Software e Aplicações</asp:ListItem>
+                            <asp:ListItem Enabled="False" Value="Banco de Dados e Aplicacoes">Banco de Dados e Aplicações</asp:ListItem>
+                            <asp:ListItem Enabled="False" Value="Programacao para Internet">Programação para Internet</asp:ListItem>
+                            <asp:ListItem Enabled="False" Value="Sistemas Integrados de Gestão e Aplicacoes">Sistemas Integrados de Gestão e Aplicações</asp:ListItem>
+                            <asp:ListItem Enabled="False" Value="Projetos de Tecnologia da Informacao II">Projetos de Tecnologia da Informação II</asp:ListItem>
+                            <asp:ListItem Enabled="False" Value="Portfolio I - TG1">Portfólio I - TG1</asp:ListItem>
+                            <asp:ListItem Enabled="False" Value="Portfolio II - TG2">Portfólio II - TG2</asp:ListItem>
                             <asp:ListItem Selected="True">Selecione</asp:ListItem>
                     </asp:DropDownList>
                     <p class="descricaoForms" style="float: none;">&nbsp;</p>
